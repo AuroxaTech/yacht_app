@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yacht_app/views/auth_screens/welcome_screen.dart';
+import 'package:yacht_app/views/booking_screen/booking_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const WelcomeScreen()
+      home:  const BookingScreen()
     );
   }
 }

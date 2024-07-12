@@ -31,7 +31,8 @@ class CustomTextField extends StatelessWidget {
     this.textAlign,
     this.textAlignVertical,
     this.height,
-    this.borderRadius
+    this.borderRadius,
+    this.borderSide
   });
 
   final double? width;
@@ -60,6 +61,7 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final TextAlignVertical? textAlignVertical;
   final BorderRadius? borderRadius;
+  final BorderSide? borderSide;
 
   @override
   Widget build(BuildContext context) {
@@ -98,22 +100,22 @@ class CustomTextField extends StatelessWidget {
     return InputDecoration(
       hintText: hintText ?? "",
       labelText: labelText,
-      hintStyle:  const TextStyle(color: blackColor, fontWeight: FontWeight.w600, fontSize: 15, fontFamily: "MontserratRegular"),
-      labelStyle:  const TextStyle(color: blackColor, fontWeight: FontWeight.w600, fontSize: 15, fontFamily: "MontserratRegular"),
+      hintStyle:  const TextStyle(color: blackColor, fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "MontserratRegular"),
+      labelStyle:  const TextStyle(color: blackColor, fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "MontserratRegular"),
       contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(12),
           // borderSide:  BorderSide(color: Colors.grey.shade300)),
-          borderSide:  const BorderSide(color: borderColor, width: 0.5)),
+          borderSide:  borderSide?? BorderSide(color: borderColor, width: 0.5)),
       focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(12),
-          borderSide: const BorderSide(color: primaryColor)),
+          borderSide: borderSide??  BorderSide(color: primaryColor)),
       focusedErrorBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red)),
+          borderSide: borderSide??  BorderSide(color: Colors.red)),
       errorBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red)),
+          borderSide: borderSide??  BorderSide(color: Colors.red)),
       prefixIcon: prefix,
       prefixIconConstraints: prefixConstraints,
       suffixIcon: suffixIcon,
