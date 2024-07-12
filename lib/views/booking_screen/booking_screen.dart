@@ -22,6 +22,7 @@ class _BookingScreenState extends State<BookingScreen>
   int _currentPage = 0;
   final _formKey1 = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
+  final _formKey3 = GlobalKey<FormState>();
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -34,6 +35,7 @@ class _BookingScreenState extends State<BookingScreen>
   DateTime focusedDay = DateTime.now();
   DateTime selectedDay = DateTime.now();
   DateTime kToday = DateTime.now();
+  List<String> _locations = ['Pakistan', 'Turkey', 'Indonesia', 'Malaysia'];
   @override
   void dispose() {
     _pageController.dispose();
@@ -107,34 +109,35 @@ class _BookingScreenState extends State<BookingScreen>
                 ),
               ),
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.005,
               ),
               Container(
-                height: height * 0.65,
+                height: height * 0.7,
                 width: width * 0.9,
                 color: Colors.white,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    return IntrinsicHeight(
-                      child:  PageView(
-                        controller: _pageController,
-                        onPageChanged: (index) {
-                          setState(() {
-                            _currentPage = index;
-                            controller.currentPage.value = index;
-                          });
-                        },
-                        children: [
-                          _buildMyDetailsPage(),
-                          _buildMyDetailsPage2(),
-                        ],
-                      ),
+                    return PageView(
+                      pageSnapping: false,
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: _pageController,
+                      onPageChanged: (index) {
+                        setState(() {
+                          _currentPage = index;
+                          controller.currentPage.value = index;
+                        });
+                      },
+                      children: [
+                        _buildMyDetailsPage(),
+                        _buildMyDetailsPage2(),
+                        _buildMyDetailsPage3()
+                      ],
                     );
                   },
                 ),
               ),
               Container(
-                height: height * 0.7,
+                height: height * 0.45,
                 width: width * 0.9,
                 color: Colors.white,
                 child: LayoutBuilder(
@@ -172,7 +175,7 @@ class _BookingScreenState extends State<BookingScreen>
                         Navigator.pop(context);
                       }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       size: 30,
                     )),
@@ -206,8 +209,7 @@ class _BookingScreenState extends State<BookingScreen>
                 //   }
                 //   return null;
                 // },
-                borderSide:
-                    const BorderSide(color: Colors.black12, width: 1.5)),
+            ),
             const SizedBox(height: 16),
             Row(
               children: [
@@ -222,9 +224,8 @@ class _BookingScreenState extends State<BookingScreen>
                     color: Colors.red),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
-              borderSide: const BorderSide(color: Colors.black12, width: 1.5),
               controller: _emailController,
               hintText: "Enter Here",
               // validator: (value) {
@@ -234,7 +235,7 @@ class _BookingScreenState extends State<BookingScreen>
               //   return null;
               // },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
                 customText(
@@ -248,10 +249,9 @@ class _BookingScreenState extends State<BookingScreen>
                     color: Colors.red),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               hintText: "Enter Here",
-              borderSide: const BorderSide(color: Colors.black12, width: 1.5),
               controller: _phoneController,
               // validator: (value) {
               //   if (value!.isEmpty) {
@@ -260,7 +260,7 @@ class _BookingScreenState extends State<BookingScreen>
               //   return null;
               // },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -277,28 +277,28 @@ class _BookingScreenState extends State<BookingScreen>
                         color: Colors.red),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   width: 350,
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xffF4F4F4),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.remove),
+                        icon: const Icon(Icons.remove),
                         onPressed: () {
                           setState(() {
                             if (_numOfPersons > 1) _numOfPersons--;
                           });
                         },
                       ),
-                      Text('$_numOfPersons', style: TextStyle(fontSize: 16)),
+                      Text('$_numOfPersons', style: const TextStyle(fontSize: 16)),
                       IconButton(
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         onPressed: () {
                           setState(() {
                             _numOfPersons++;
@@ -310,12 +310,12 @@ class _BookingScreenState extends State<BookingScreen>
                 ),
               ],
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             CustomButton(
               onTap: () {
                 if (_formKey1.currentState!.validate()) {
                   _pageController.nextPage(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 }
@@ -347,7 +347,7 @@ class _BookingScreenState extends State<BookingScreen>
                         Navigator.pop(context);
                       }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       size: 30,
                     )),
@@ -370,28 +370,28 @@ class _BookingScreenState extends State<BookingScreen>
                         fontSize: 18),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   width: 350,
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xffF4F4F4),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.remove),
+                        icon: const Icon(Icons.remove),
                         onPressed: () {
                           setState(() {
                             if (_numOfDrinks > 1) _numOfDrinks--;
                           });
                         },
                       ),
-                      Text('$_numOfDrinks', style: TextStyle(fontSize: 16)),
+                      Text('$_numOfDrinks', style: const TextStyle(fontSize: 16)),
                       IconButton(
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         onPressed: () {
                           setState(() {
                             _numOfDrinks++;
@@ -411,28 +411,28 @@ class _BookingScreenState extends State<BookingScreen>
                     text: "Add Food :",
                     fontWeight: FontWeight.w700,
                     fontSize: 18),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   width: 350,
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xffF4F4F4),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.remove),
+                        icon: const Icon(Icons.remove),
                         onPressed: () {
                           setState(() {
                             if (_numOfFood > 1) _numOfFood--;
                           });
                         },
                       ),
-                      Text('$_numOfFood', style: TextStyle(fontSize: 16)),
+                      Text('$_numOfFood', style: const TextStyle(fontSize: 16)),
                       IconButton(
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         onPressed: () {
                           setState(() {
                             _numOfFood++;
@@ -456,28 +456,28 @@ class _BookingScreenState extends State<BookingScreen>
                         fontSize: 18),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   width: 350,
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xffF4F4F4),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.remove),
+                        icon: const Icon(Icons.remove),
                         onPressed: () {
                           setState(() {
                             if (_numOfFood2 > 1) _numOfFood2--;
                           });
                         },
                       ),
-                      Text('$_numOfFood2', style: TextStyle(fontSize: 16)),
+                      Text('$_numOfFood2', style: const TextStyle(fontSize: 16)),
                       IconButton(
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         onPressed: () {
                           setState(() {
                             _numOfFood2++;
@@ -489,14 +489,14 @@ class _BookingScreenState extends State<BookingScreen>
                 ),
               ],
             ),
-            SizedBox(height: 32),
-            YachtDetailsCard(),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
+            const YachtDetailsCard(),
+            const SizedBox(height: 32),
             CustomButton(
               onTap: () {
                 if (_formKey2.currentState!.validate()) {
                   _pageController.nextPage(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 }
@@ -505,6 +505,243 @@ class _BookingScreenState extends State<BookingScreen>
             ),
           ]),
         ));
+  }
+  Widget _buildMyDetailsPage3() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Form(
+        key: _formKey3,
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      if (_currentPage > 0) {
+                        _pageController.previousPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                    )),
+                customText(
+                    text: 'Payment & Billing',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600)
+              ],
+            ),
+            _buildTabIndicators(controller.currentPage.value),
+            Row(
+              children: [
+                Container(
+                  width: 60,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                      color: Color(0xff172B85),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Image.asset("assets/png/visa.png",scale: 1.5,),
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  width: 60,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                      color: Color(0xffF8F8F8),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Image.asset("assets/png/mastercard.png",scale: 1.5,),
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  width: 60,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                      color: Color(0xffF8F8F8),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Image.asset("assets/png/americanexpress.png",scale: 1.5,),
+                ),
+
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                customText(
+                    text: "Card Number ",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16),
+                customText(
+                    text: "*",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.red),
+              ],
+            ),
+            const SizedBox(height: 8),
+            CustomTextField(
+
+              // validator: (value) {
+              //   if (value!.isEmpty) {
+              //     return 'Please enter card number';
+              //   }
+              //   return null;
+              // },
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        customText(
+                            text: "MM/YY",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16),
+                        customText(
+                            text: "*",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.red),
+                      ],
+                    ),
+                    CustomTextField(
+                      width: 80,
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return 'Please enter your email address';
+                      //   }
+                      //   return null;
+                      // },
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        customText(
+                            text: "CVV",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16),
+                        customText(
+                            text: "*",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.red),
+                      ],
+                    ),
+                    CustomTextField(
+                      width: 80,
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return 'Please enter your email address';
+                      //   }
+                      //   return null;
+                      // },
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        customText(
+                            text: "Zip",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16),
+                        customText(
+                            text: "*",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.red),
+                      ],
+                    ),
+                    CustomTextField(
+                      width: 80,
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return 'Please enter your email address';
+                      //   }
+                      //   return null;
+                      // },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                customText(
+                    text: "Country ",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16
+                ),
+                customText(
+                    text: "*",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.red
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 290,
+              child: InputDecorator(
+                decoration: InputDecoration(
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0),
+     borderSide: const BorderSide(color: borderColor,width: 0.5),
+    ),
+    contentPadding: const EdgeInsets.all(10),
+    ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: _locations.first,
+                    isDense: true,
+                    isExpanded: true,
+                    menuMaxHeight: 380,
+                    items:_locations.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (_) {},
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+            CustomButton(
+              onTap: () {
+                if (_formKey1.currentState!.validate()) {
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              },
+              text: 'Next',
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -715,7 +952,7 @@ class YachtDetailsCard extends StatelessWidget {
                       customText(
                           text: "\$399.64",
                           fontWeight: FontWeight.bold,
-                          color: Color(0xffBEA355)),
+                          color: const Color(0xffBEA355)),
                       customText(text: "/per hour", fontSize: 12)
                     ],
                   )
@@ -748,11 +985,11 @@ Widget _buildTabIndicators(int currentPage) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: List.generate(3, (index) {
       return Container(
-        margin: EdgeInsets.symmetric(horizontal: 4.0, vertical: 16.0),
-        width: 40,
+        margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 16.0),
+        width: 85,
         height: 8,
         decoration: BoxDecoration(
-          color: currentPage >= index ? Colors.amber : Colors.grey[300],
+          color: currentPage >= index ? const Color(0xffBEA355) : Colors.grey[300],
           borderRadius: BorderRadius.circular(4.0),
         ),
       );
@@ -766,7 +1003,7 @@ Widget _buildOrderSummaryPage() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         customText(text:'Order Summary', fontSize: 22,fontWeight: FontWeight.w600),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -785,9 +1022,9 @@ Widget _buildOrderSummaryPage() {
               borderSide: const BorderSide(color: Colors.black12, width: 1.5),
               hintText: 'Discount Code',
             ),
-            SizedBox(width: 5,),
+            const SizedBox(width: 5,),
             CustomButton(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               width: 80,
               onTap: () {
                 // Apply discount code
@@ -800,14 +1037,14 @@ Widget _buildOrderSummaryPage() {
 
       ],
     ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
                 customText(text: 'Subtotal'),
-                Icon(Icons.question_mark,size: 18,)
+                const Icon(Icons.question_mark,size: 18,)
               ],
             ),
             customText(text: '\$4.25',fontWeight: FontWeight.w600),
@@ -819,7 +1056,7 @@ Widget _buildOrderSummaryPage() {
             Row(
               children: [
                 customText(text: 'Shipping'),
-                Icon(Icons.question_mark,size: 18,)
+                const Icon(Icons.question_mark,size: 18,)
               ],
             ),
             customText(text: '\$8.89',fontWeight: FontWeight.w600),
@@ -831,7 +1068,7 @@ Widget _buildOrderSummaryPage() {
             Row(
               children: [
                 customText(text: 'Estimated Taxes'),
-                Icon(Icons.question_mark,size: 18,)
+                const Icon(Icons.question_mark,size: 18,)
               ],
             ),
             customText(text: '\$0.40',fontWeight: FontWeight.w600),
@@ -843,7 +1080,7 @@ Widget _buildOrderSummaryPage() {
             Row(
               children: [
                 customText(text: 'Total',fontWeight: FontWeight.w700),
-                Icon(Icons.question_mark,size: 18,)
+                const Icon(Icons.question_mark,size: 18,)
               ],
             ),
             customText(text: '\$14.99',fontWeight: FontWeight.w600),

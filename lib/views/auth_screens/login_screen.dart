@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:yacht_app/constants/color_constants.dart';
 import 'package:yacht_app/views/auth_screens/sign_up_screen.dart';
 import 'package:yacht_app/views/bottom_bar/main_bottom_bar.dart';
@@ -12,13 +11,21 @@ import '../../constants/image_constants.dart';
 import '../../widgets/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
+
   const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+
 class _LoginScreenState extends State<LoginScreen> {
+  dynamic obsecure;
+  @override
+  void initState() {
+    super.initState();
+    obsecure = true;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,15 +111,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 CustomTextField(
+                  isObscureText: obsecure,
                   prefixConstraints: const BoxConstraints(
                     minWidth: 50,
                     minHeight: 20
                   ),
                   prefix: SvgPicture.asset(lockSvg),
                   hintText: "Password",
-                  suffixIcon: IconButton(onPressed: (){
-
-                  }, icon: const Icon(Icons.visibility)),
+                  suffixIcon: IconButton(
+                    icon: obsecure
+                        ? const Icon(
+                      Icons.visibility_off_outlined,
+                      color: Colors.black,
+                    )
+                        : const Icon(
+                      Icons.visibility_outlined,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        obsecure = !obsecure;
+                      });
+                    },
+                  ),
                 ),
 
                 const SizedBox(

@@ -17,6 +17,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  dynamic obsecure;
+  @override
+  void initState() {
+    super.initState();
+    obsecure = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,15 +139,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
 
                 CustomTextField(
+                  isObscureText: obsecure,
                   prefixConstraints: const BoxConstraints(
                       minWidth: 50,
                       minHeight: 20
                   ),
                   prefix: SvgPicture.asset(lockSvg),
                   hintText: "Password",
-                  suffixIcon: IconButton(onPressed: (){
-
-                  }, icon: const Icon(Icons.visibility)),
+                  suffixIcon: IconButton(
+                    icon: obsecure
+                        ? const Icon(
+                      Icons.visibility_off_outlined,
+                      color: Colors.black,
+                    )
+                        : const Icon(
+                      Icons.visibility_outlined,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        obsecure = !obsecure;
+                      });
+                    },
+                  ),
                 ),
 
                 const SizedBox(
@@ -150,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 CustomButton(
                   width: double.infinity,
-                  text: "Login",
+                  text: "Sign Up",
                   onTap: (){
                     //Get.to(() => LoginScreen());
                   },

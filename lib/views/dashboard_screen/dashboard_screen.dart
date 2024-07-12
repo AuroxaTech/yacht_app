@@ -19,6 +19,8 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.sizeOf(context).width;
+    double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -35,17 +37,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Image.asset(loginTop, color: Colors.white,),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     CustomTextField(
                       hintText: "Search yachts",
                       borderRadius: BorderRadius.circular(50),
-                      prefixConstraints: BoxConstraints(
+                      prefixConstraints: const BoxConstraints(
                         minWidth: 10,
                         minHeight: 10
                       ),
@@ -65,9 +67,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 
                 Container(
-                  margin: EdgeInsets.all(15),
+                  margin: const EdgeInsets.all(15),
                   width: double.infinity,
-                  padding: EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     color: borderColor,
                     borderRadius: BorderRadius.circular(50),
@@ -137,7 +139,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
         
-                PopularHotel(),
+                const PopularHotel(),
         
               ],
             ),
@@ -188,7 +190,7 @@ class PopularHotel extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -234,85 +236,90 @@ class PopularHotel extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.only(top: 20,right: 10, bottom: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  customText(
-                    text: "Yacht Name here",
-                    color: blackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      customText(
-                        text: "24 ft.",
+              child: IntrinsicHeight(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: customText(
+                        text: "Yacht Name here",
+                        textAlign: TextAlign.start,
                         color: blackColor,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
-                        fontSize: 12,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 5,
-                        height: 5,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        customText(
+                          text: "24 ft.",
+                          color: blackColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      customText(
-                        text: "8 Guests",
-                        color: blackColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 5,
-                        height: 5,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black
+                        const SizedBox(
+                          width: 4,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      customText(
-                        text: "3 cabin",
-                        color: blackColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      customText(
-                          text: "\$149",
-                          fontWeight: FontWeight.bold
-                      ),
+                        Container(
+                          width: 5,
+                          height: 5,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        customText(
+                          text: "8 Guests",
+                          color: blackColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Container(
+                          width: 5,
+                          height: 5,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        customText(
+                          text: "3 cabin",
+                          color: blackColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        customText(
+                            text: "\$149",
+                            fontWeight: FontWeight.bold
+                        ),
 
-                      customText(
-                          text: "/per hour",
-                          fontSize: 12
-                      )
-                    ],
-                  )
-                ],
+                        customText(
+                            text: "/per hour",
+                            fontSize: 12
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
 
@@ -385,7 +392,7 @@ class DestinationCard extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
                         child: Row(
                           children: [
                             customText(
@@ -426,18 +433,18 @@ class DestinationCard extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Container(
                             width: 5,
                             height: 5,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           customText(
@@ -446,18 +453,18 @@ class DestinationCard extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Container(
                             width: 5,
                             height: 5,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.black
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           customText(
