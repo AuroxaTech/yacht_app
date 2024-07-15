@@ -6,6 +6,7 @@ import 'package:yacht_app/constants/image_constants.dart';
 import 'package:yacht_app/views/schedule_screens/schedule_screen.dart';
 import '../../constants/color_constants.dart';
 import '../booking_screen/booking_screen.dart';
+import '../booking_screen/new_booking_screen.dart';
 import '../dashboard_screen/dashboard_screen.dart';
 class MainBottomBar extends StatefulWidget {
   const MainBottomBar({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _MainBottomBarState extends State<MainBottomBar> {
   List<Widget> widgetList = [
     const DashboardScreen(),
     const ScheduleScreen(),
-    const BookingScreen(),
+    NewBookingScreen(),
     const Center(child: Text("Hello")),
   ];
 

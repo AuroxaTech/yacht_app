@@ -8,6 +8,7 @@ import 'package:yacht_app/widgets/custom_text_field.dart';
 import '../../constants/constants_widgets.dart';
 import '../../constants/image_constants.dart';
 import '../../widgets/custom_button.dart';
+import '../bottom_bar/main_bottom_bar.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -172,6 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   width: double.infinity,
                   text: "Sign Up",
                   onTap: (){
+                    Get.offAll(() => const MainBottomBar());
                     //Get.to(() => LoginScreen());
                   },
                 ),

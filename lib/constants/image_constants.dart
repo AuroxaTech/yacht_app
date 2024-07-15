@@ -27,3 +27,5 @@ const moreSvg =  "assets/svg/more.svg";
 const wifiSvg =  "assets/svg/wifi.svg";
 const coffeeSvg =  "assets/svg/coffee.svg";
 const starSvg =  "assets/svg/star.svg";
+const questionSvg =  "assets/svg/question.svg";
+const backArrow =  "assets/svg/backArrow.svg";
