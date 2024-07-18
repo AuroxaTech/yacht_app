@@ -23,8 +23,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             flex: 3,
             child: Container(
               width: double.infinity,
-              decoration: const BoxDecoration(),
-              child: Image.asset(backImage, width: double.infinity,fit: BoxFit.cover,),
+              decoration:  BoxDecoration(
+                color: Colors.grey.withOpacity(0.2)
+              ),
+              child: Image.asset(backImage, width: double.infinity,
+                  fit: BoxFit.cover,
+                  filterQuality: FilterQuality.low,
+                colorBlendMode: BlendMode.darken,
+                color: Colors.black.withOpacity(0.2),
+              ),
             ),
           ),
          Expanded(
@@ -40,9 +47,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                    spreadRadius: 10,
                  ),
 
-                 BoxShadow(
+                 const BoxShadow(
                    color: Colors.white,
-                   offset: const Offset(0, -10), // Top shadow
+                   offset: Offset(0, -10), // Top shadow
                    blurRadius: 22.0,
                    spreadRadius: 22,
                  ),
@@ -62,7 +69,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                        width: double.infinity,
                        text: "Get Started",
                       onTap: (){
-                         Get.to(() => LoginScreen());
+                         Get.to(() => const LoginScreen());
                       },
                    ),
 
